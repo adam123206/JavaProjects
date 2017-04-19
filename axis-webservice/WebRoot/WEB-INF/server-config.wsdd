@@ -1,0 +1,23 @@
+<deployment name="test" xmlns="http://xml.apache.org/axis/wsdd/" 
+            xmlns:java="http://xml.apache.org/axis/wsdd/providers/java"
+            xmlns:xsi="http://www.w3.org/2000/10/XMLSchema-instance">
+  <!-- note that either style="message" OR provider="java:MSG" both work -->
+  <globalConfiguration>  
+  <parameter name="sendMultiRefs" value="true"/>  
+  <parameter name="disablePrettyXML" value="true"/>  
+  <parameter name="dotNetSoapEncFix" value="true"/>  
+  <parameter name="enableNamespacePrefixOptimization" value="false"/>  
+  <parameter name="sendXMLDeclaration" value="true"/>  
+  <parameter name="sendXsiTypes" value="true"/>  
+  <parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>  
+</globalConfiguration>
+  <service name="HelloService" provider="java:RPC">
+    <parameter name="className" value="com.sample.axis.service.interfaces.ServiceImp" />
+    <parameter name="allowedMethods" value="*" />
+  </service>
+	<transport name="http">
+    <requestFlow>
+        <handler type="java:org.apache.axis.handlers.http.URLMapper"/>
+    </requestFlow>
+</transport>  
+</deployment>
